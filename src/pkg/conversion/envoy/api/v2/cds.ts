@@ -36,6 +36,11 @@ export const Cluster = factory( cdsPB.Cluster, {
 
     return types[val.toUpperCase()]
   },
+  setDnsLookupFamily: ( val: string ) => {
+    const types = cdsPB.Cluster.DnsLookupFamily as any
+
+    return types[val.toUpperCase()]
+  },
   setHttp2ProtocolOptions: ( val: any ): protocolPB.Http2ProtocolOptions => {
     return Http2ProtocolOptions( val )
   },
