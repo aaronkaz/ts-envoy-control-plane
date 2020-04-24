@@ -1,5 +1,5 @@
 {
-  "name": "ts-envoy-control-plane",
+  "name": "@aaronkaz/ts-envoy-control-plane",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
