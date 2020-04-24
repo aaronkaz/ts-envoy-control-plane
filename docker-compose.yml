@@ -1,0 +1,89 @@
+version: '3'
+services:
+  xds:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/src
+    command: npm run sample
+    ports:
+      - "5000:5000"
+    networks:
+      envoymesh:
+        aliases:
+          - xds
+  
+  service-a:
+    image: node:alpine
+    working_dir: /opt/app
+    volumes:
+      - ./src/sample/service_a/index.js:/opt/app/index.js
+    command: node index.js
+    ports:
+      - "3001:3001"
+    networks:
+      envoymesh:
+        aliases:
+          - service_a
+        
+  #proxy-1:
+  #  image: envoyproxy/envoy:latest
+  #  volumes:
+  #    - ./src/sample/proxy-1.yaml:/etc/envoy.yaml
+  #  ports:
+  #    - "8080:80"
+  #    - "8001:8001"
+  #  command: /usr/local/bin/envoy -c /etc/envoy.yaml
+  #  networks:
+  #    - envoymesh
+
+  #proxy-2:
+  #  image: envoyproxy/envoy:latest
+  #  volumes:
+  #    - ./src/sample/proxy-2.yaml:/etc/envoy.yaml
+  #  ports:
+  #    - "8081:80"
+  #    - "8002:8001"
+  #  command: /usr/local/bin/envoy -c /etc/envoy.yaml
+  #  networks:
+  #    - envoymesh
+  
+  proxy-3:
+    image: envoyproxy/envoy:latest
+    volumes:
+      - ./src/sample/proxy-3.yaml:/etc/envoy.yaml
+    ports:
+      - "8081:80"
+      - "8002:8001"
+    command: /usr/local/bin/envoy -c /etc/envoy.yaml
+    networks:
+      - envoymesh
+    
+  #service-b:
+  #  image: node:alpine
+  #  working_dir: /opt/app
+  #  volumes:
+  #    - ./src/sample/service_b/index.js:/opt/app/index.js
+  #  command: node index.js
+  #  ports:
+  #    - "3002:3002"
+  #  networks:
+  #    envoymesh:
+  #      aliases:
+  #        - service_b
+#
+  #service-b-envoy:
+  #  image: envoyproxy/envoy:latest
+  #  volumes:
+  #    - ./src/sample/service_b/envoy.yaml:/etc/envoy.yaml
+  #    - ./src/sample/service_b/envoy.static.yaml:/etc/envoy.static.yaml
+  #  ports:
+  #    - "8081:80"
+  #    - "8002:8001"
+  #  command: /usr/local/bin/envoy -c /etc/envoy.yaml --service-cluster service_b --service-node service_b
+  #  networks:
+  #    - envoymesh
+
+networks:
+  envoymesh: {}

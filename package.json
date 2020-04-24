@@ -1,0 +1,42 @@
+{
+  "name": "envoy-control-plane",
+  "version": "1.1.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "test:watch": "npm test -- --watchAll",
+    "build": "tsc --declaration",
+    "sample": "node -r ts-node/register --inspect ./src/sample",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:fix": "tslint -p . --fix",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "postversion": "git push && git push --tags"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/google-protobuf": "^3.7.2",
+    "@types/jest": "^24.0.23",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.19.1",
+    "google-protobuf": "^3.11.2",
+    "grpc": "^1.24.2",
+    "grpc-tools": "^1.8.0",
+    "grpc_tools_node_protoc_ts": "^2.5.9",
+    "jest": "^24.9.0",
+    "node-logger": "0.0.1",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "pascalcase": "^1.0.0",
+    "rxjs": "^6.5.4"
+  }
+}

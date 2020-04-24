@@ -1,0 +1,18 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "declaration": true,
+    "allowJs": true,
+    "strict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noLib": false,
+    "outDir": "./dist",
+    "removeComments": false,
+    "noUnusedLocals": true,
+    "target": "es5",
+    "typeRoots": ["node_modules/@types", "./src/types"]
+  },
+  "include": ["src"],
+  "exclude": ["lib", "node_modules", "**/__tests__/*", "**/__mocks__/*", "src/**/*.test.ts"],
+}

@@ -1,0 +1,21 @@
+{
+  // *
+  // Highlights all files with ts errors in vscode file explorer
+  //
+  //   In command palette:
+  //   Tasks: Run Task => Watch TS Errors
+  //
+  //     safely dismiss the terminal via ⌘J, reopen with ⌘J
+  // *
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Watch TS Errors",
+      "type": "shell",
+      "command": "tsc",
+      "args": ["-w", "-p", ".", "--noEmit"],
+      "isBackground": true,
+      "problemMatcher": "$tsc-watch"
+    }
+  ]
+}
