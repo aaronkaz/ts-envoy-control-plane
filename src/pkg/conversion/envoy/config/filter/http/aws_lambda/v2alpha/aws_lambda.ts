@@ -10,4 +10,8 @@ export const Config = factory( awsLambdaPb.Config, {
   }
 })
 
-export const PerRouteConfig = factory( awsLambdaPb.PerRouteConfig, {})
+export const PerRouteConfig = factory( awsLambdaPb.PerRouteConfig, {
+  setInvokeConfig: ( val: any ) => {
+    return Config( val )
+  }
+})

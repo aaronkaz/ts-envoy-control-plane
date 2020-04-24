@@ -54,6 +54,12 @@ export const Route = factory( ExtendedRoute, {
           a.pack( msg.serializeBinary(), packType )
           break
         }
+        case 'envoy.filters.http.aws_lambda': {
+          const msg = http.aws_lambda.v2alpha.PerRouteConfig( mapVals )
+          const packType = mapVals['@type'].replace( 'type.googleapis.com/', '' )
+          a.pack( msg.serializeBinary(), packType )
+          break
+        }
         default: {
           //
         }
