@@ -1,6 +1,6 @@
 node:
-  id: "proxy-3"
-  cluster: "proxy-3"
+  id: "proxy-1"
+  cluster: "proxy-1"
 
 dynamic_resources:
   ads_config:

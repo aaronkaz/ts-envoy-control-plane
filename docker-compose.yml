@@ -1,12 +1,19 @@
-version: '3'
+version: '2'
 services:
   xds:
     build:
       context: ./
       dockerfile: Dockerfile
     volumes:
-      - ./src:/src
-    command: npm run sample
+      - ./example:/app/example
+      - ./src:/app/src
+      - ./lib:/app/lib
+      - ./package.json:/app/package.json
+    environment: 
+      - "SERVICE_A=10.5.0.5"
+      - "SERVICE_B=10.5.0.6"
+    working_dir: /app
+    command: npm run example
     ports:
       - "5000:5000"
     networks:
@@ -18,72 +25,43 @@ services:
     image: node:alpine
     working_dir: /opt/app
     volumes:
-      - ./src/sample/service_a/index.js:/opt/app/index.js
+      - ./example/service-a.js:/opt/app/index.js
     command: node index.js
     ports:
-      - "3001:3001"
+      - "3001:3000"
     networks:
       envoymesh:
+        ipv4_address: 10.5.0.5
         aliases:
           - service_a
-        
-  #proxy-1:
-  #  image: envoyproxy/envoy:latest
-  #  volumes:
-  #    - ./src/sample/proxy-1.yaml:/etc/envoy.yaml
-  #  ports:
-  #    - "8080:80"
-  #    - "8001:8001"
-  #  command: /usr/local/bin/envoy -c /etc/envoy.yaml
-  #  networks:
-  #    - envoymesh
 
-  #proxy-2:
-  #  image: envoyproxy/envoy:latest
-  #  volumes:
-  #    - ./src/sample/proxy-2.yaml:/etc/envoy.yaml
-  #  ports:
-  #    - "8081:80"
-  #    - "8002:8001"
-  #  command: /usr/local/bin/envoy -c /etc/envoy.yaml
-  #  networks:
-  #    - envoymesh
-  
-  proxy-3:
+  service-b:
+    image: node:alpine
+    working_dir: /opt/app
+    volumes:
+      - ./example/service-b.js:/opt/app/index.js
+    command: node index.js
+    ports:
+      - "3002:3000"
+    networks:
+      envoymesh:
+        ipv4_address: 10.5.0.6
+        
+  proxy-1:
     image: envoyproxy/envoy:latest
     volumes:
-      - ./src/sample/proxy-3.yaml:/etc/envoy.yaml
+      - ./example/proxy-1.yaml:/etc/envoy.yaml
     ports:
-      - "8081:80"
-      - "8002:8001"
+      - "8080:80"
+      - "8001:8001"
     command: /usr/local/bin/envoy -c /etc/envoy.yaml
     networks:
       - envoymesh
-    
-  #service-b:
-  #  image: node:alpine
-  #  working_dir: /opt/app
-  #  volumes:
-  #    - ./src/sample/service_b/index.js:/opt/app/index.js
-  #  command: node index.js
-  #  ports:
-  #    - "3002:3002"
-  #  networks:
-  #    envoymesh:
-  #      aliases:
-  #        - service_b
-#
-  #service-b-envoy:
-  #  image: envoyproxy/envoy:latest
-  #  volumes:
-  #    - ./src/sample/service_b/envoy.yaml:/etc/envoy.yaml
-  #    - ./src/sample/service_b/envoy.static.yaml:/etc/envoy.static.yaml
-  #  ports:
-  #    - "8081:80"
-  #    - "8002:8001"
-  #  command: /usr/local/bin/envoy -c /etc/envoy.yaml --service-cluster service_b --service-node service_b
-  #  networks:
-  #    - envoymesh
 
 networks:
-  envoymesh: {}
+  envoymesh: 
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1

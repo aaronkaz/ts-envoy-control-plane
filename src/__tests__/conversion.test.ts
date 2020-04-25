@@ -1155,12 +1155,20 @@ describe( 'conversion', () => {
           {
             'filters': [
               {
-                'name': 'envoy.filters.http.aws_lambda',
+                'name': 'envoy.http_connection_manager',
                 'typed_config': {
-                  '@type': 'type.googleapis.com/envoy.extensions.filters.http.aws_lambda.v3.Config',
-                  'arn': 'arn:aws:lambda:us-west-2:987654321:function:hello_envoy',
-                  'payload_passthrough': true,
-                  'invocation_mode': 'ASYNCHRONOUS'
+                  '@type': 'type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager',
+                  'http_filters': [
+                    {
+                      'name': 'envoy.filters.http.aws_lambda',
+                      'typed_config': {
+                        '@type': 'type.googleapis.com/envoy.extensions.filters.http.aws_lambda.v3.Config',
+                        'arn': 'arn:aws:lambda:us-west-2:987654321:function:hello_envoy',
+                        'payload_passthrough': true,
+                        'invocation_mode': 'ASYNCHRONOUS'
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -1174,17 +1182,26 @@ describe( 'conversion', () => {
       const a = msg.getFilterChainsList()[0].getFiltersList()[0].getTypedConfig()
       expect( a ).not.toBeNull()
       if ( a ) {
-        const http = a.unpack( AwsLambdaConfig.deserializeBinary, a.getTypeName() )
+        const http = a.unpack( HttpConnectionManager.deserializeBinary, a.getTypeName() )
         expect( http ).not.toBeNull()
 
         // check http connection manager
         if ( http ) {
           // console.log( JSON.stringify( http.toObject(), null, 2 ) )
-          expect( http.toObject() ).toEqual({
-            'arn': 'arn:aws:lambda:us-west-2:987654321:function:hello_envoy',
-            'payloadPassthrough': true,
-            'invocationMode': 1
-          })
+          const lambda = http.getHttpFiltersList()[0].getTypedConfig()
+          expect( lambda ).not.toBeNull()
+          if ( lambda ) {
+            const config = lambda.unpack( AwsLambdaConfig.deserializeBinary, lambda.getTypeName() )
+            expect( config ).not.toBeNull()
+            if ( config ) {
+              // console.log( JSON.stringify( config.toObject(), null, 2 ) )
+              expect( config.toObject() ).toEqual({
+                'arn': 'arn:aws:lambda:us-west-2:987654321:function:hello_envoy',
+                'payloadPassthrough': true,
+                'invocationMode': 1
+              })
+            }
+          }
         }
       }
 

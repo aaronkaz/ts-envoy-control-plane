@@ -7,10 +7,10 @@ import * as basePb from '../../../../../../lib/envoy/api/v2/core/base_pb'
 import * as configSourcePB from '../../../../../../lib/envoy/api/v2/core/config_source_pb'
 import * as certPB from '../../../../../../lib/envoy/api/v2/auth/cert_pb'
 import { factory, duration } from '../../../factory'
-import { ClusterLoadAssignment } from './eds'
+import { ClusterLoadAssignment } from './endpoint'
 import { Http2ProtocolOptions, TcpKeepalive, ConfigSource, TransportSocket, Metadata } from './core'
 import { UpstreamTlsContext } from './auth'
-import { CircuitBreakers } from './cluster'
+import { CircuitBreakers } from './cluster/circuit_breaker'
 
 export const UpstreamConnectionOptions = factory( cdsPB.UpstreamConnectionOptions, {
   setTcpKeepalive: ( val: any ): addressPB.TcpKeepalive => {

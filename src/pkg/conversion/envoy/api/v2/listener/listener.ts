@@ -37,12 +37,6 @@ export const Filter = factory( listenerPB.Filter, {
         any.pack( msg.serializeBinary(), packType )
         break
       }
-      case 'type.googleapis.com/envoy.extensions.filters.http.aws_lambda.v3.Config': {
-        const msg = filter.http.aws_lambda.v2alpha.Config( val )
-        const packType = val['@type'].replace( 'type.googleapis.com/', '' )
-        any.pack( msg.serializeBinary(), packType )
-        break
-      }
       default: {
         // do nothing
       }

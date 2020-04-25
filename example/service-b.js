@@ -1,10 +1,9 @@
 'use strict'
 
 const http = require( 'http' )
-const url = require( 'url' )
 
 // Constants
-const PORT = 3001
+const PORT = 3000
 const HOST = '0.0.0.0'
 
 // server
@@ -13,7 +12,7 @@ const httpServer = http.createServer( ( req, res ) => {
     'Content-Type': 'application/json',
     'Cache-Control': 'no-cache'
   })
-  res.write( 'Hello from Service A \n' )
+  res.write( 'Hello from Service B \n' )
   res.end()
 })
 

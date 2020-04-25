@@ -5,7 +5,8 @@ import { Struct } from 'google-protobuf/google/protobuf/struct_pb'
 import { Any } from 'google-protobuf/google/protobuf/any_pb'
 import { ExtAuthz } from '../../ext_authz/v2/ext_authz'
 import { Lua } from '../../../http/lua/v2/lua'
-import { RouteConfiguration } from '../../../../../api/v2/rds'
+import { Config as AwsLambdaConfig } from '../../../http/aws_lambda/v2alpha/aws_lambda'
+import { RouteConfiguration } from '../../../../../api/v2/route'
 import { ConfigSource } from '../../../../../api/v2/core/config_source'
 
 export const Rds = factory( http_connection_manager_pb.Rds, {
@@ -30,6 +31,12 @@ export const HttpFilter = factory( http_connection_manager_pb.HttpFilter, {
       }
       case 'type.googleapis.com/envoy.config.filter.http.lua.v2.Lua': {
         const msg = Lua( val )
+        const packType = val['@type'].replace( 'type.googleapis.com/', '' )
+        any.pack( msg.serializeBinary(), packType )
+        break
+      }
+      case 'type.googleapis.com/envoy.extensions.filters.http.aws_lambda.v3.Config': {
+        const msg = AwsLambdaConfig( val )
         const packType = val['@type'].replace( 'type.googleapis.com/', '' )
         any.pack( msg.serializeBinary(), packType )
         break
