@@ -612,7 +612,8 @@ describe( 'conversion', () => {
                               'grpc': {}
                             },
                             'route': {
-                              'cluster': 'service-a'
+                              'cluster': 'service-a',
+                              'timeout': '30s'
                             },
                             'per_filter_config': {
                               'envoy.ext_authz': {
@@ -763,7 +764,7 @@ describe( 'conversion', () => {
                 'name': 'envoy.http_connection_manager',
                 'typedConfig': {
                   'typeUrl': 'type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager',
-                  'value': 'EgxpbmdyZXNzX2h0dHAidQoLbG9jYWxfcm91dGUSZgoHc2VydmljZRIBKhpACgwKCC9yb3V0ZS9hQgASCwoJc2VydmljZS1hQiMKD2Vudm95LmV4dF9hdXRoehIQCg4KCGRpc2FibGVkEgIgAYIBFQoPY29ubmVjdC1mYWlsdXJlEgIIAip9Cg9lbnZveS5leHRfYXV0aHoiagpFdHlwZS5nb29nbGVhcGlzLmNvbS9lbnZveS5jb25maWcuZmlsdGVyLm5ldHdvcmsuZXh0X2F1dGh6LnYyLkV4dEF1dGh6EiESHQoXChVleHRlcm5hbC1hdXRoLXNlcnZpY2UaAggFGAEqfQoPZW52b3kuZXh0X2F1dGh6ImoKN3R5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5odHRwLmx1YS52Mi5MdWESLwotZnVuY3Rpb24gZW52b3lfb25fcmVxdWVzdChyZXF1ZXN0X2hhbmRsZSkKZW5kKhAKDGVudm95LnJvdXRlchIAWgIIAXICCAE='
+                  'value': 'EgxpbmdyZXNzX2h0dHAieQoLbG9jYWxfcm91dGUSagoHc2VydmljZRIBKhpECgwKCC9yb3V0ZS9hQgASDwoJc2VydmljZS1hQgIIHkIjCg9lbnZveS5leHRfYXV0aHoSEAoOCghkaXNhYmxlZBICIAGCARUKD2Nvbm5lY3QtZmFpbHVyZRICCAIqfQoPZW52b3kuZXh0X2F1dGh6ImoKRXR5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5uZXR3b3JrLmV4dF9hdXRoei52Mi5FeHRBdXRoehIhEh0KFwoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlGgIIBRgBKn0KD2Vudm95LmV4dF9hdXRoeiJqCjd0eXBlLmdvb2dsZWFwaXMuY29tL2Vudm95LmNvbmZpZy5maWx0ZXIuaHR0cC5sdWEudjIuTHVhEi8KLWZ1bmN0aW9uIGVudm95X29uX3JlcXVlc3QocmVxdWVzdF9oYW5kbGUpCmVuZCoQCgxlbnZveS5yb3V0ZXISAFoCCAFyAggB'
                 }
               }
             ],
@@ -822,7 +823,11 @@ describe( 'conversion', () => {
                         'rateLimitsList': [],
                         'hashPolicyList': [],
                         'upgradeConfigsList': [],
-                        'internalRedirectAction': 0
+                        'internalRedirectAction': 0,
+                        'timeout': {
+                          'nanos': 0,
+                          'seconds': 30
+                        }
                       },
                       'perFilterConfigMap': [
                         [

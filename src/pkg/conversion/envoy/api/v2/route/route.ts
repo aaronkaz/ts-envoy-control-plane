@@ -1,5 +1,5 @@
 import * as route_pb from '../../../../../../../lib/envoy/api/v2/route/route_components_pb'
-import { factory } from '../../../../factory'
+import { factory, duration } from '../../../../factory'
 import { UInt32Value } from 'google-protobuf/google/protobuf/wrappers_pb'
 import * as jspb from 'google-protobuf'
 import { Struct } from 'google-protobuf/google/protobuf/struct_pb'
@@ -24,7 +24,10 @@ export const RouteMatch = factory( route_pb.RouteMatch, {
   }
 })
 
-export const RouteAction = factory( route_pb.RouteAction, {})
+export const RouteAction = factory( route_pb.RouteAction, {
+  setTimeout: duration,
+  setIdleTimeout: duration
+})
 
 export const Route = factory( ExtendedRoute, {
   setMatch: ( val: any ) => {
