@@ -30,7 +30,8 @@ export class Snapshot {
     clusters: Resource[] = [],
     routes: Resource[] = [],
     listeners: Resource[] = [],
-    runtimes: Resource[] = []
+    runtimes: Resource[] = [],
+    secrets: Resource[] = []
   ) {
     this.version = version
     this.resources = {}
@@ -39,6 +40,7 @@ export class Snapshot {
     this.resources[ResponseType.Route] = newResources( version, routes )
     this.resources[ResponseType.Listener] = newResources( version, listeners )
     this.resources[ResponseType.Runtime] = newResources( version, runtimes )
+    this.resources[ResponseType.Secret] = newResources( version, secrets )
   }
 
   // get resources by type

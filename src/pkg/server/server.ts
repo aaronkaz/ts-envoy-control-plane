@@ -106,6 +106,9 @@ export class Server {
     values.listeners.subscribe( ( response ) => {
       values.listenerNonce = send( response, resourceTypes.ListenerType )
     })
+    values.secrets.subscribe( ( response ) => {
+      values.secretNonce = send( response, resourceTypes.SecretType )
+    })
 
     // On data received on stream
     call.on( 'data', async ( request: DiscoveryRequest ) => {
@@ -156,6 +159,11 @@ export class Server {
           values.listenerCancel()
         }
         cache.createWatch( request, values.listeners )
+      } else if ( typeURL === resourceTypes.SecretType && ( values.secretNonce === 0 || values.secretNonce === nonce ) ) {
+        if ( values.secretCancel ) {
+          values.secretCancel()
+        }
+        cache.createWatch( request, values.secrets )
       } else {
         throw new Error( 'type url is missing or invalid' )
       }
@@ -223,6 +231,19 @@ export class Server {
   }
 
   deltaRoutes: grpc.handleBidiStreamingCall<DeltaDiscoveryRequest, DeltaDiscoveryResponse> = () => {
+    //
+  }
+
+  // SDS methods
+  streamSecrets: grpc.handleBidiStreamingCall<DiscoveryRequest, DiscoveryResponse> = ( call ) => {
+    return this.process( call, resourceTypes.SecretType )
+  }
+
+  fetchSecrets: grpc.handleUnaryCall<DiscoveryRequest, DiscoveryResponse> = () => {
+    //
+  }
+
+  deltaSecrets: grpc.handleBidiStreamingCall<DeltaDiscoveryRequest, DeltaDiscoveryResponse> = () => {
     //
   }
 

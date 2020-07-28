@@ -4,6 +4,8 @@ import { Address, SocketAddress } from '../../lib/envoy/api/v2/core/address_pb'
 import { Cluster } from '../../lib/envoy/api/v2/cluster_pb'
 import { Listener } from '../../lib/envoy/api/v2/listener_pb'
 import { RouteConfiguration } from '../../lib/envoy/api/v2/route_pb'
+import { Secret, TlsCertificate } from '../../lib/envoy/api/v2/auth/cert_pb'
+import { DataSource } from '../../lib/envoy/api/v2/core/base_pb'
 import { envoy } from '../pkg/conversion'
 
 export const createClusterLoadAssignment = (): ClusterLoadAssignment => {
@@ -115,4 +117,19 @@ export const createRoute = (): RouteConfiguration => {
   }
 
   return envoy.api.v2.RouteConfiguration( data )
+}
+
+export const createSecret = (): Secret => {
+  const secret = new Secret()
+  secret.setName( 'foobar.com' )
+  const tlsCert = new TlsCertificate()
+  const chainSource = new DataSource()
+  chainSource.setInlineString( 'cert chain string' )
+  tlsCert.setCertificateChain( chainSource )
+  const privKeySource = new DataSource()
+  privKeySource.setInlineString( 'priv key string' )
+  tlsCert.setPrivateKey( privKeySource )
+  secret.setTlsCertificate( tlsCert )
+
+  return secret
 }

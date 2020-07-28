@@ -4,6 +4,7 @@ import { Cluster } from '../../../lib/envoy/api/v2/cluster_pb'
 import { RouteConfiguration } from '../../../lib/envoy/api/v2/route_pb'
 import { Listener } from '../../../lib/envoy/api/v2/listener_pb'
 import { Runtime } from '../../../lib/envoy/service/discovery/v2/rtds_pb'
+import { Secret } from '../../../lib/envoy/api/v2/auth/cert_pb'
 
 const apiTypePrefix = 'type.googleapis.com/envoy.api.v2.'
 const discoveryTypePrefix = 'type.googleapis.com/envoy.service.discovery.v2.'
@@ -34,7 +35,8 @@ export const getResourceName = ( res: Resource ): string => {
     res instanceof Cluster ||
     res instanceof RouteConfiguration ||
     res instanceof Listener ||
-    res instanceof Runtime
+    res instanceof Runtime ||
+    res instanceof Secret
   ) {
     return res.getName()
   }
