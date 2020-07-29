@@ -29,6 +29,8 @@ export const RouteAction = factory( route_pb.RouteAction, {
   setIdleTimeout: duration
 })
 
+export const RedirectAction = factory( route_pb.RedirectAction, {})
+
 export const Route = factory( ExtendedRoute, {
   setMatch: ( val: any ) => {
     return RouteMatch( val )
@@ -71,6 +73,9 @@ export const Route = factory( ExtendedRoute, {
     }
 
     return m
+  },
+  setRedirect: ( val: any ) => {
+    return RedirectAction( val )
   }
 
 })

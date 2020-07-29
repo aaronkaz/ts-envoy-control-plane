@@ -620,6 +620,15 @@ describe( 'conversion', () => {
                                 'disabled': true
                               }
                             }
+                          },
+                          {
+                            'match': {
+                              'prefix': '/route/b',
+                              'grpc': {}
+                            },
+                            'redirect': {
+                              'https_redirect': true
+                            }
                           }
                         ]
                       }
@@ -764,7 +773,7 @@ describe( 'conversion', () => {
                 'name': 'envoy.http_connection_manager',
                 'typedConfig': {
                   'typeUrl': 'type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager',
-                  'value': 'EgxpbmdyZXNzX2h0dHAieQoLbG9jYWxfcm91dGUSagoHc2VydmljZRIBKhpECgwKCC9yb3V0ZS9hQgASDwoJc2VydmljZS1hQgIIHkIjCg9lbnZveS5leHRfYXV0aHoSEAoOCghkaXNhYmxlZBICIAGCARUKD2Nvbm5lY3QtZmFpbHVyZRICCAIqfQoPZW52b3kuZXh0X2F1dGh6ImoKRXR5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5uZXR3b3JrLmV4dF9hdXRoei52Mi5FeHRBdXRoehIhEh0KFwoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlGgIIBRgBKn0KD2Vudm95LmV4dF9hdXRoeiJqCjd0eXBlLmdvb2dsZWFwaXMuY29tL2Vudm95LmNvbmZpZy5maWx0ZXIuaHR0cC5sdWEudjIuTHVhEi8KLWZ1bmN0aW9uIGVudm95X29uX3JlcXVlc3QocmVxdWVzdF9oYW5kbGUpCmVuZCoQCgxlbnZveS5yb3V0ZXISAFoCCAFyAggB'
+                  'value': 'EgxpbmdyZXNzX2h0dHAijQEKC2xvY2FsX3JvdXRlEn4KB3NlcnZpY2USASoaRAoMCggvcm91dGUvYUIAEg8KCXNlcnZpY2UtYUICCB5CIwoPZW52b3kuZXh0X2F1dGh6EhAKDgoIZGlzYWJsZWQSAiABGhIKDAoIL3JvdXRlL2JCABoCIAGCARUKD2Nvbm5lY3QtZmFpbHVyZRICCAIqfQoPZW52b3kuZXh0X2F1dGh6ImoKRXR5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5uZXR3b3JrLmV4dF9hdXRoei52Mi5FeHRBdXRoehIhEh0KFwoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlGgIIBRgBKn0KD2Vudm95LmV4dF9hdXRoeiJqCjd0eXBlLmdvb2dsZWFwaXMuY29tL2Vudm95LmNvbmZpZy5maWx0ZXIuaHR0cC5sdWEudjIuTHVhEi8KLWZ1bmN0aW9uIGVudm95X29uX3JlcXVlc3QocmVxdWVzdF9oYW5kbGUpCmVuZCoQCgxlbnZveS5yb3V0ZXISAFoCCAFyAggB'
                 }
               }
             ],
@@ -818,16 +827,16 @@ describe( 'conversion', () => {
                         'prefixRewrite': '',
                         'hostRewrite': '',
                         'autoHostRewriteHeader': '',
+                        'timeout': {
+                          'seconds': 30,
+                          'nanos': 0
+                        },
                         'requestMirrorPoliciesList': [],
                         'priority': 0,
                         'rateLimitsList': [],
                         'hashPolicyList': [],
                         'upgradeConfigsList': [],
-                        'internalRedirectAction': 0,
-                        'timeout': {
-                          'nanos': 0,
-                          'seconds': 30
-                        }
+                        'internalRedirectAction': 0
                       },
                       'perFilterConfigMap': [
                         [
@@ -847,6 +856,33 @@ describe( 'conversion', () => {
                           }
                         ]
                       ],
+                      'typedPerFilterConfigMap': [],
+                      'requestHeadersToAddList': [],
+                      'requestHeadersToRemoveList': [],
+                      'responseHeadersToAddList': [],
+                      'responseHeadersToRemoveList': []
+                    },
+                    {
+                      'name': '',
+                      'match': {
+                        'prefix': '/route/b',
+                        'path': '',
+                        'regex': '',
+                        'headersList': [],
+                        'queryParametersList': [],
+                        'grpc': {}
+                      },
+                      'redirect': {
+                        'httpsRedirect': true,
+                        'schemeRedirect': '',
+                        'hostRedirect': '',
+                        'portRedirect': 0,
+                        'pathRedirect': '',
+                        'prefixRewrite': '',
+                        'responseCode': 0,
+                        'stripQuery': false
+                      },
+                      'perFilterConfigMap': [],
                       'typedPerFilterConfigMap': [],
                       'requestHeadersToAddList': [],
                       'requestHeadersToRemoveList': [],
