@@ -47,7 +47,7 @@ export namespace HttpUri {
     }
 
     export enum HttpUpstreamTypeCase {
-        HTTPUPSTREAMTYPE_NOT_SET = 0,
+        HTTP_UPSTREAM_TYPE_NOT_SET = 0,
     
     CLUSTER = 2,
 

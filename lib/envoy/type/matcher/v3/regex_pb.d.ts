@@ -66,7 +66,7 @@ export namespace RegexMatcher {
 
 
     export enum EngineTypeCase {
-        ENGINETYPE_NOT_SET = 0,
+        ENGINE_TYPE_NOT_SET = 0,
     
     GOOGLE_RE2 = 1,
 

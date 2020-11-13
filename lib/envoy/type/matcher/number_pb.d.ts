@@ -42,7 +42,7 @@ export namespace DoubleMatcher {
     }
 
     export enum MatchPatternCase {
-        MATCHPATTERN_NOT_SET = 0,
+        MATCH_PATTERN_NOT_SET = 0,
     
     RANGE = 1,
 

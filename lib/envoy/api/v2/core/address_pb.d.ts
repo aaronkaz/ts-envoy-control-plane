@@ -91,7 +91,7 @@ export namespace SocketAddress {
 
 
     export enum PortSpecifierCase {
-        PORTSPECIFIER_NOT_SET = 0,
+        PORT_SPECIFIER_NOT_SET = 0,
     
     PORT_VALUE = 3,
 

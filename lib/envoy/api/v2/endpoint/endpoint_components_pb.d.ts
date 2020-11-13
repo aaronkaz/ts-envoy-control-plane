@@ -126,7 +126,7 @@ export namespace LbEndpoint {
     }
 
     export enum HostIdentifierCase {
-        HOSTIDENTIFIER_NOT_SET = 0,
+        HOST_IDENTIFIER_NOT_SET = 0,
     
     ENDPOINT = 1,
 

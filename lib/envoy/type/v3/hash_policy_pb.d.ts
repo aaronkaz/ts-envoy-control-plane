@@ -54,7 +54,7 @@ export namespace HashPolicy {
 
 
     export enum PolicySpecifierCase {
-        POLICYSPECIFIER_NOT_SET = 0,
+        POLICY_SPECIFIER_NOT_SET = 0,
     
     SOURCE_IP = 1,
 

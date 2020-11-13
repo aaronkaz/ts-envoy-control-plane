@@ -5,7 +5,7 @@
 /* eslint-disable */
 
 import * as jspb from "google-protobuf";
-import * as envoy_api_v2_auth_cert_pb from "../../../../envoy/api/v2/auth/cert_pb";
+import * as envoy_api_v2_auth_tls_pb from "../../../../envoy/api/v2/auth/tls_pb";
 import * as envoy_api_v2_core_address_pb from "../../../../envoy/api/v2/core/address_pb";
 import * as envoy_api_v2_core_base_pb from "../../../../envoy/api/v2/core/base_pb";
 import * as envoy_type_range_pb from "../../../../envoy/type/range_pb";
@@ -53,7 +53,7 @@ export namespace Filter {
     }
 
     export enum ConfigTypeCase {
-        CONFIGTYPE_NOT_SET = 0,
+        CONFIG_TYPE_NOT_SET = 0,
     
     CONFIG = 2,
 
@@ -153,8 +153,8 @@ export class FilterChain extends jspb.Message {
 
     hasTlsContext(): boolean;
     clearTlsContext(): void;
-    getTlsContext(): envoy_api_v2_auth_cert_pb.DownstreamTlsContext | undefined;
-    setTlsContext(value?: envoy_api_v2_auth_cert_pb.DownstreamTlsContext): void;
+    getTlsContext(): envoy_api_v2_auth_tls_pb.DownstreamTlsContext | undefined;
+    setTlsContext(value?: envoy_api_v2_auth_tls_pb.DownstreamTlsContext): void;
 
     clearFiltersList(): void;
     getFiltersList(): Array<Filter>;
@@ -196,7 +196,7 @@ export class FilterChain extends jspb.Message {
 export namespace FilterChain {
     export type AsObject = {
         filterChainMatch?: FilterChainMatch.AsObject,
-        tlsContext?: envoy_api_v2_auth_cert_pb.DownstreamTlsContext.AsObject,
+        tlsContext?: envoy_api_v2_auth_tls_pb.DownstreamTlsContext.AsObject,
         filtersList: Array<Filter.AsObject>,
         useProxyProto?: google_protobuf_wrappers_pb.BoolValue.AsObject,
         metadata?: envoy_api_v2_core_base_pb.Metadata.AsObject,
@@ -344,7 +344,7 @@ export namespace ListenerFilter {
     }
 
     export enum ConfigTypeCase {
-        CONFIGTYPE_NOT_SET = 0,
+        CONFIG_TYPE_NOT_SET = 0,
     
     CONFIG = 2,
 

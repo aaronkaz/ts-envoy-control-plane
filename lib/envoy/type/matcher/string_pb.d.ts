@@ -68,7 +68,7 @@ export namespace StringMatcher {
     }
 
     export enum MatchPatternCase {
-        MATCHPATTERN_NOT_SET = 0,
+        MATCH_PATTERN_NOT_SET = 0,
     
     EXACT = 1,
 

@@ -200,7 +200,7 @@ export namespace Node {
     }
 
     export enum UserAgentVersionTypeCase {
-        USERAGENTVERSIONTYPE_NOT_SET = 0,
+        USER_AGENT_VERSION_TYPE_NOT_SET = 0,
     
     USER_AGENT_VERSION = 7,
 
@@ -590,7 +590,7 @@ export namespace TransportSocket {
     }
 
     export enum ConfigTypeCase {
-        CONFIGTYPE_NOT_SET = 0,
+        CONFIG_TYPE_NOT_SET = 0,
     
     CONFIG = 2,
 

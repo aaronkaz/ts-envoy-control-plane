@@ -101,6 +101,9 @@ export namespace AggregatedConfigSource {
 }
 
 export class SelfConfigSource extends jspb.Message { 
+    getTransportApiVersion(): ApiVersion;
+    setTransportApiVersion(value: ApiVersion): void;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SelfConfigSource.AsObject;
@@ -114,6 +117,7 @@ export class SelfConfigSource extends jspb.Message {
 
 export namespace SelfConfigSource {
     export type AsObject = {
+        transportApiVersion: ApiVersion,
     }
 }
 
@@ -206,7 +210,7 @@ export namespace ConfigSource {
     }
 
     export enum ConfigSourceSpecifierCase {
-        CONFIGSOURCESPECIFIER_NOT_SET = 0,
+        CONFIG_SOURCE_SPECIFIER_NOT_SET = 0,
     
     PATH = 1,
 

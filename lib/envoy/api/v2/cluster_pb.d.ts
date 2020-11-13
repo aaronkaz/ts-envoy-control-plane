@@ -5,7 +5,7 @@
 /* eslint-disable */
 
 import * as jspb from "google-protobuf";
-import * as envoy_api_v2_auth_cert_pb from "../../../envoy/api/v2/auth/cert_pb";
+import * as envoy_api_v2_auth_tls_pb from "../../../envoy/api/v2/auth/tls_pb";
 import * as envoy_api_v2_cluster_circuit_breaker_pb from "../../../envoy/api/v2/cluster/circuit_breaker_pb";
 import * as envoy_api_v2_cluster_filter_pb from "../../../envoy/api/v2/cluster/filter_pb";
 import * as envoy_api_v2_cluster_outlier_detection_pb from "../../../envoy/api/v2/cluster/outlier_detection_pb";
@@ -101,8 +101,8 @@ export class Cluster extends jspb.Message {
 
     hasTlsContext(): boolean;
     clearTlsContext(): void;
-    getTlsContext(): envoy_api_v2_auth_cert_pb.UpstreamTlsContext | undefined;
-    setTlsContext(value?: envoy_api_v2_auth_cert_pb.UpstreamTlsContext): void;
+    getTlsContext(): envoy_api_v2_auth_tls_pb.UpstreamTlsContext | undefined;
+    setTlsContext(value?: envoy_api_v2_auth_tls_pb.UpstreamTlsContext): void;
 
 
     hasUpstreamHttpProtocolOptions(): boolean;
@@ -287,7 +287,7 @@ export namespace Cluster {
         healthChecksList: Array<envoy_api_v2_core_health_check_pb.HealthCheck.AsObject>,
         maxRequestsPerConnection?: google_protobuf_wrappers_pb.UInt32Value.AsObject,
         circuitBreakers?: envoy_api_v2_cluster_circuit_breaker_pb.CircuitBreakers.AsObject,
-        tlsContext?: envoy_api_v2_auth_cert_pb.UpstreamTlsContext.AsObject,
+        tlsContext?: envoy_api_v2_auth_tls_pb.UpstreamTlsContext.AsObject,
         upstreamHttpProtocolOptions?: envoy_api_v2_core_protocol_pb.UpstreamHttpProtocolOptions.AsObject,
         commonHttpProtocolOptions?: envoy_api_v2_core_protocol_pb.HttpProtocolOptions.AsObject,
         httpProtocolOptions?: envoy_api_v2_core_protocol_pb.Http1ProtocolOptions.AsObject,
@@ -738,7 +738,7 @@ export namespace Cluster {
 
 
         export enum LocalityConfigSpecifierCase {
-            LOCALITYCONFIGSPECIFIER_NOT_SET = 0,
+            LOCALITY_CONFIG_SPECIFIER_NOT_SET = 0,
         
     ZONE_AWARE_LB_CONFIG = 2,
 
@@ -812,7 +812,7 @@ export namespace Cluster {
 
 
     export enum ClusterDiscoveryTypeCase {
-        CLUSTERDISCOVERYTYPE_NOT_SET = 0,
+        CLUSTER_DISCOVERY_TYPE_NOT_SET = 0,
     
     TYPE = 2,
 
@@ -821,7 +821,7 @@ export namespace Cluster {
     }
 
     export enum LbConfigCase {
-        LBCONFIG_NOT_SET = 0,
+        LB_CONFIG_NOT_SET = 0,
     
     RING_HASH_LB_CONFIG = 23,
 

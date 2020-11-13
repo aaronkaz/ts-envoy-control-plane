@@ -60,6 +60,12 @@ export class ExtAuthz extends jspb.Message {
     getFilterEnabled(): envoy_api_v2_core_base_pb.RuntimeFractionalPercent | undefined;
     setFilterEnabled(value?: envoy_api_v2_core_base_pb.RuntimeFractionalPercent): void;
 
+
+    hasDenyAtDisable(): boolean;
+    clearDenyAtDisable(): void;
+    getDenyAtDisable(): envoy_api_v2_core_base_pb.RuntimeFeatureFlag | undefined;
+    setDenyAtDisable(value?: envoy_api_v2_core_base_pb.RuntimeFeatureFlag): void;
+
     getIncludePeerCertificate(): boolean;
     setIncludePeerCertificate(value: boolean): void;
 
@@ -87,6 +93,7 @@ export namespace ExtAuthz {
         statusOnError?: envoy_type_http_status_pb.HttpStatus.AsObject,
         metadataContextNamespacesList: Array<string>,
         filterEnabled?: envoy_api_v2_core_base_pb.RuntimeFractionalPercent.AsObject,
+        denyAtDisable?: envoy_api_v2_core_base_pb.RuntimeFeatureFlag.AsObject,
         includePeerCertificate: boolean,
     }
 

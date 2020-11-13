@@ -293,7 +293,7 @@ export namespace Expr {
             }
 
             export enum KeyKindCase {
-                KEYKIND_NOT_SET = 0,
+                KEY_KIND_NOT_SET = 0,
             
     FIELD_KEY = 2,
 
@@ -367,7 +367,7 @@ export namespace Expr {
 
 
     export enum ExprKindCase {
-        EXPRKIND_NOT_SET = 0,
+        EXPR_KIND_NOT_SET = 0,
     
     CONST_EXPR = 3,
 
@@ -471,7 +471,7 @@ export namespace Constant {
     }
 
     export enum ConstantKindCase {
-        CONSTANTKIND_NOT_SET = 0,
+        CONSTANT_KIND_NOT_SET = 0,
     
     NULL_VALUE = 1,
 

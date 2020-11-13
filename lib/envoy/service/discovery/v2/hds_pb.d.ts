@@ -157,7 +157,7 @@ export namespace HealthCheckRequestOrEndpointHealthResponse {
     }
 
     export enum RequestTypeCase {
-        REQUESTTYPE_NOT_SET = 0,
+        REQUEST_TYPE_NOT_SET = 0,
     
     HEALTH_CHECK_REQUEST = 1,
 

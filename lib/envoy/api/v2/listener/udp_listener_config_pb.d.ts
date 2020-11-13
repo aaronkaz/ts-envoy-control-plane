@@ -47,7 +47,7 @@ export namespace UdpListenerConfig {
     }
 
     export enum ConfigTypeCase {
-        CONFIGTYPE_NOT_SET = 0,
+        CONFIG_TYPE_NOT_SET = 0,
     
     CONFIG = 2,
 

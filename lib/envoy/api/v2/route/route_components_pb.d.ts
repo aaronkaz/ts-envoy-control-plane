@@ -559,7 +559,7 @@ export namespace RouteMatch {
 
 
     export enum PathSpecifierCase {
-        PATHSPECIFIER_NOT_SET = 0,
+        PATH_SPECIFIER_NOT_SET = 0,
     
     PREFIX = 1,
 
@@ -654,7 +654,7 @@ export namespace CorsPolicy {
     }
 
     export enum EnabledSpecifierCase {
-        ENABLEDSPECIFIER_NOT_SET = 0,
+        ENABLED_SPECIFIER_NOT_SET = 0,
     
     ENABLED = 7,
 
@@ -1072,7 +1072,7 @@ export namespace RouteAction {
 
 
         export enum PolicySpecifierCase {
-            POLICYSPECIFIER_NOT_SET = 0,
+            POLICY_SPECIFIER_NOT_SET = 0,
         
     HEADER = 1,
 
@@ -1129,7 +1129,7 @@ export namespace RouteAction {
 
 
     export enum ClusterSpecifierCase {
-        CLUSTERSPECIFIER_NOT_SET = 0,
+        CLUSTER_SPECIFIER_NOT_SET = 0,
     
     CLUSTER = 1,
 
@@ -1140,7 +1140,7 @@ export namespace RouteAction {
     }
 
     export enum HostRewriteSpecifierCase {
-        HOSTREWRITESPECIFIER_NOT_SET = 0,
+        HOST_REWRITE_SPECIFIER_NOT_SET = 0,
     
     HOST_REWRITE = 6,
 
@@ -1266,7 +1266,7 @@ export namespace RetryPolicy {
         }
 
         export enum ConfigTypeCase {
-            CONFIGTYPE_NOT_SET = 0,
+            CONFIG_TYPE_NOT_SET = 0,
         
     CONFIG = 2,
 
@@ -1313,7 +1313,7 @@ export namespace RetryPolicy {
         }
 
         export enum ConfigTypeCase {
-            CONFIGTYPE_NOT_SET = 0,
+            CONFIG_TYPE_NOT_SET = 0,
         
     CONFIG = 2,
 
@@ -1464,7 +1464,7 @@ export namespace RedirectAction {
 
 
     export enum SchemeRewriteSpecifierCase {
-        SCHEMEREWRITESPECIFIER_NOT_SET = 0,
+        SCHEME_REWRITE_SPECIFIER_NOT_SET = 0,
     
     HTTPS_REDIRECT = 4,
 
@@ -1473,7 +1473,7 @@ export namespace RedirectAction {
     }
 
     export enum PathRewriteSpecifierCase {
-        PATHREWRITESPECIFIER_NOT_SET = 0,
+        PATH_REWRITE_SPECIFIER_NOT_SET = 0,
     
     PATH_REDIRECT = 2,
 
@@ -1846,7 +1846,7 @@ export namespace RateLimit {
 
 
         export enum ActionSpecifierCase {
-            ACTIONSPECIFIER_NOT_SET = 0,
+            ACTION_SPECIFIER_NOT_SET = 0,
         
     SOURCE_CLUSTER = 1,
 
@@ -1942,7 +1942,7 @@ export namespace HeaderMatcher {
     }
 
     export enum HeaderMatchSpecifierCase {
-        HEADERMATCHSPECIFIER_NOT_SET = 0,
+        HEADER_MATCH_SPECIFIER_NOT_SET = 0,
     
     EXACT_MATCH = 4,
 
@@ -2010,7 +2010,7 @@ export namespace QueryParameterMatcher {
     }
 
     export enum QueryParameterMatchSpecifierCase {
-        QUERYPARAMETERMATCHSPECIFIER_NOT_SET = 0,
+        QUERY_PARAMETER_MATCH_SPECIFIER_NOT_SET = 0,
     
     STRING_MATCH = 5,
 

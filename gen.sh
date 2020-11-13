@@ -34,6 +34,7 @@ imports=(
   "${vendor}/envoy/config/filter/network/tcp_proxy/v2"
   "${vendor}/envoy/config/listener/v2"
   "${vendor}/envoy/config/trace/v2"
+  "${vendor}/envoy/service/auth/v2"
   "${vendor}/envoy/service/discovery/v2"
   "${vendor}/envoy/type"
   "${vendor}/opencensus/proto/resource"

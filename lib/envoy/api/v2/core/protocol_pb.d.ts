@@ -197,7 +197,7 @@ export namespace Http1ProtocolOptions {
 
 
         export enum HeaderFormatCase {
-            HEADERFORMAT_NOT_SET = 0,
+            HEADER_FORMAT_NOT_SET = 0,
         
     PROPER_CASE_WORDS = 1,
 

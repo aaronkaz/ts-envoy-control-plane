@@ -36,7 +36,7 @@ export namespace EventServiceConfig {
     }
 
     export enum ConfigSourceSpecifierCase {
-        CONFIGSOURCESPECIFIER_NOT_SET = 0,
+        CONFIG_SOURCE_SPECIFIER_NOT_SET = 0,
     
     GRPC_SERVICE = 1,
 

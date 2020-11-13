@@ -1214,7 +1214,7 @@ export namespace StringRules {
     }
 
     export enum WellKnownCase {
-        WELLKNOWN_NOT_SET = 0,
+        WELL_KNOWN_NOT_SET = 0,
     
     EMAIL = 12,
 
@@ -1360,7 +1360,7 @@ export namespace BytesRules {
     }
 
     export enum WellKnownCase {
-        WELLKNOWN_NOT_SET = 0,
+        WELL_KNOWN_NOT_SET = 0,
     
     IP = 10,
 
@@ -1731,6 +1731,8 @@ export namespace TimestampRules {
 }
 
 export const disabled: jspb.ExtensionFieldInfo<boolean>;
+
+export const ignored: jspb.ExtensionFieldInfo<boolean>;
 
 export const required: jspb.ExtensionFieldInfo<boolean>;
 

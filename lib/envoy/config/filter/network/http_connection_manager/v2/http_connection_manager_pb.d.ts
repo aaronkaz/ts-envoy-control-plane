@@ -444,7 +444,7 @@ export namespace HttpConnectionManager {
 
 
     export enum RouteSpecifierCase {
-        ROUTESPECIFIER_NOT_SET = 0,
+        ROUTE_SPECIFIER_NOT_SET = 0,
     
     RDS = 3,
 
@@ -675,7 +675,7 @@ export namespace ScopedRoutes {
 
 
                 export enum ExtractTypeCase {
-                    EXTRACTTYPE_NOT_SET = 0,
+                    EXTRACT_TYPE_NOT_SET = 0,
                 
     INDEX = 3,
 
@@ -699,7 +699,7 @@ export namespace ScopedRoutes {
 
 
     export enum ConfigSpecifierCase {
-        CONFIGSPECIFIER_NOT_SET = 0,
+        CONFIG_SPECIFIER_NOT_SET = 0,
     
     SCOPED_ROUTE_CONFIGURATIONS_LIST = 4,
 
@@ -770,7 +770,7 @@ export namespace HttpFilter {
     }
 
     export enum ConfigTypeCase {
-        CONFIGTYPE_NOT_SET = 0,
+        CONFIG_TYPE_NOT_SET = 0,
     
     CONFIG = 2,
 

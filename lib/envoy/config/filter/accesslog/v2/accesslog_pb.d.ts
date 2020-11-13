@@ -58,7 +58,7 @@ export namespace AccessLog {
     }
 
     export enum ConfigTypeCase {
-        CONFIGTYPE_NOT_SET = 0,
+        CONFIG_TYPE_NOT_SET = 0,
     
     CONFIG = 3,
 
@@ -164,7 +164,7 @@ export namespace AccessLogFilter {
     }
 
     export enum FilterSpecifierCase {
-        FILTERSPECIFIER_NOT_SET = 0,
+        FILTER_SPECIFIER_NOT_SET = 0,
     
     STATUS_CODE_FILTER = 1,
 
@@ -519,7 +519,7 @@ export namespace ExtensionFilter {
     }
 
     export enum ConfigTypeCase {
-        CONFIGTYPE_NOT_SET = 0,
+        CONFIG_TYPE_NOT_SET = 0,
     
     CONFIG = 2,
 

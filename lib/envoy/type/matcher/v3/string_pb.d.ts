@@ -36,6 +36,12 @@ export class StringMatcher extends jspb.Message {
     getSafeRegex(): envoy_type_matcher_v3_regex_pb.RegexMatcher | undefined;
     setSafeRegex(value?: envoy_type_matcher_v3_regex_pb.RegexMatcher): void;
 
+
+    hasContains(): boolean;
+    clearContains(): void;
+    getContains(): string;
+    setContains(value: string): void;
+
     getIgnoreCase(): boolean;
     setIgnoreCase(value: boolean): void;
 
@@ -58,11 +64,12 @@ export namespace StringMatcher {
         prefix: string,
         suffix: string,
         safeRegex?: envoy_type_matcher_v3_regex_pb.RegexMatcher.AsObject,
+        contains: string,
         ignoreCase: boolean,
     }
 
     export enum MatchPatternCase {
-        MATCHPATTERN_NOT_SET = 0,
+        MATCH_PATTERN_NOT_SET = 0,
     
     EXACT = 1,
 
@@ -71,6 +78,8 @@ export namespace StringMatcher {
     SUFFIX = 3,
 
     SAFE_REGEX = 5,
+
+    CONTAINS = 7,
 
     }
 

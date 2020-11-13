@@ -259,7 +259,7 @@ export namespace TcpProxy {
 
 
     export enum ClusterSpecifierCase {
-        CLUSTERSPECIFIER_NOT_SET = 0,
+        CLUSTER_SPECIFIER_NOT_SET = 0,
     
     CLUSTER = 2,
 

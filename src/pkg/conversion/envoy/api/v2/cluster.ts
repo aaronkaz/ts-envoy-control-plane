@@ -5,7 +5,7 @@ import * as protocolPB from '../../../../../../lib/envoy/api/v2/core/protocol_pb
 import * as addressPB from '../../../../../../lib/envoy/api/v2/core/address_pb'
 import * as basePb from '../../../../../../lib/envoy/api/v2/core/base_pb'
 import * as configSourcePB from '../../../../../../lib/envoy/api/v2/core/config_source_pb'
-import * as certPB from '../../../../../../lib/envoy/api/v2/auth/cert_pb'
+import * as tlsPB from '../../../../../../lib/envoy/api/v2/auth/tls_pb'
 import { factory, duration } from '../../../factory'
 import { ClusterLoadAssignment } from './endpoint'
 import { Http2ProtocolOptions, TcpKeepalive, ConfigSource, TransportSocket, Metadata } from './core'
@@ -56,7 +56,7 @@ export const Cluster = factory( cdsPB.Cluster, {
   setEdsClusterConfig: ( val: any ): cdsPB.Cluster.EdsClusterConfig => {
     return EdsClusterConfig( val )
   },
-  setTlsContext: ( val: any ): certPB.UpstreamTlsContext => {
+  setTlsContext: ( val: any ): tlsPB.UpstreamTlsContext => {
     return UpstreamTlsContext( val )
   },
   setTransportSocket: ( val: any ): basePb.TransportSocket => {

@@ -91,7 +91,7 @@ export namespace ValueMatcher {
 
 
     export enum MatchPatternCase {
-        MATCHPATTERN_NOT_SET = 0,
+        MATCH_PATTERN_NOT_SET = 0,
     
     NULL_MATCH = 1,
 
@@ -135,7 +135,7 @@ export namespace ListMatcher {
     }
 
     export enum MatchPatternCase {
-        MATCHPATTERN_NOT_SET = 0,
+        MATCH_PATTERN_NOT_SET = 0,
     
     ONE_OF = 1,
 

@@ -226,7 +226,7 @@ export namespace GrpcService {
             }
 
             export enum CredentialSpecifierCase {
-                CREDENTIALSPECIFIER_NOT_SET = 0,
+                CREDENTIAL_SPECIFIER_NOT_SET = 0,
             
     SSL_CREDENTIALS = 1,
 
@@ -393,7 +393,7 @@ export namespace GrpcService {
                 }
 
                 export enum ConfigTypeCase {
-                    CONFIGTYPE_NOT_SET = 0,
+                    CONFIG_TYPE_NOT_SET = 0,
                 
     CONFIG = 2,
 
@@ -458,7 +458,7 @@ export namespace GrpcService {
 
 
             export enum CredentialSpecifierCase {
-                CREDENTIALSPECIFIER_NOT_SET = 0,
+                CREDENTIAL_SPECIFIER_NOT_SET = 0,
             
     ACCESS_TOKEN = 1,
 
@@ -482,7 +482,7 @@ export namespace GrpcService {
 
 
     export enum TargetSpecifierCase {
-        TARGETSPECIFIER_NOT_SET = 0,
+        TARGET_SPECIFIER_NOT_SET = 0,
     
     ENVOY_GRPC = 1,
 

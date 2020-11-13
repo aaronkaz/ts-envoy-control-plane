@@ -410,7 +410,7 @@ export namespace HealthCheck {
         }
 
         export enum ConfigTypeCase {
-            CONFIGTYPE_NOT_SET = 0,
+            CONFIG_TYPE_NOT_SET = 0,
         
     CONFIG = 2,
 
@@ -445,7 +445,7 @@ export namespace HealthCheck {
 
 
     export enum HealthCheckerCase {
-        HEALTHCHECKER_NOT_SET = 0,
+        HEALTH_CHECKER_NOT_SET = 0,
     
     HTTP_HEALTH_CHECK = 8,
 

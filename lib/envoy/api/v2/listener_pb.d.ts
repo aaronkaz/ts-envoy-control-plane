@@ -232,7 +232,7 @@ export namespace Listener {
 
 
         export enum BalanceTypeCase {
-            BALANCETYPE_NOT_SET = 0,
+            BALANCE_TYPE_NOT_SET = 0,
         
     EXACT_BALANCE = 1,
 
