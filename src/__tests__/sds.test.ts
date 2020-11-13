@@ -1,5 +1,5 @@
 import { Server } from '../pkg/server'
-import { Secret } from '../../lib/envoy/api/v2/auth/cert_pb'
+import { Secret } from '../../lib/envoy/api/v2/auth/secret_pb'
 import * as discoveryMessages from '../../lib/envoy/api/v2/discovery_pb'
 import * as envoyCore from '../../lib/envoy/api/v2/core/base_pb'
 import { createSecret } from './fixtures'

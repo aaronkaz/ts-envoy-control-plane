@@ -1,6 +1,6 @@
 import { envoy } from '../pkg/conversion'
 import { HttpConnectionManager } from '../../lib/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager_pb'
-import { UpstreamTlsContext } from '../../lib/envoy/api/v2/auth/cert_pb'
+import { UpstreamTlsContext } from '../../lib/envoy/api/v2/auth/tls_pb'
 import { TcpProxy } from '../../lib/envoy/config/filter/network/tcp_proxy/v2/tcp_proxy_pb'
 import { ExtAuthz } from '../../lib/envoy/config/filter/network/ext_authz/v2/ext_authz_pb'
 import { Lua } from '../../lib/envoy/config/filter/http/lua/v2/lua_pb'
@@ -471,89 +471,89 @@ describe( 'conversion', () => {
       }
 
       const msg = envoy.api.v2.Cluster( data )
-      //console.log( JSON.stringify( msg.toObject(), null, 2 ) )
+      // console.log( JSON.stringify( msg.toObject(), null, 2 ) )
       // console.log(msg.serializeBinary())
       const a = msg.getTransportSocket()?.getTypedConfig()
       expect( a ).not.toBeNull()
       if ( a ) {
         const tls = a.unpack( UpstreamTlsContext.deserializeBinary, a.getTypeName() )
         expect( tls ).not.toBeNull()
-        if (tls) {
-          //console.log( JSON.stringify( tls.toObject(), null, 2 ) )
-          expect(tls.toObject()).toEqual({
-            "commonTlsContext": {
-              "tlsParams": {
-                "tlsMinimumProtocolVersion": 0,
-                "tlsMaximumProtocolVersion": 0,
-                "cipherSuitesList": [],
-                "ecdhCurvesList": [
-                  "X25519:P-256:P-521:P-384"
+        if ( tls ) {
+          // console.log( JSON.stringify( tls.toObject(), null, 2 ) )
+          expect( tls.toObject() ).toEqual({
+            'commonTlsContext': {
+              'tlsParams': {
+                'tlsMinimumProtocolVersion': 0,
+                'tlsMaximumProtocolVersion': 0,
+                'cipherSuitesList': [],
+                'ecdhCurvesList': [
+                  'X25519:P-256:P-521:P-384'
                 ]
               },
-              "tlsCertificatesList": [],
-              "tlsCertificateSdsSecretConfigsList": [
+              'tlsCertificatesList': [],
+              'tlsCertificateSdsSecretConfigsList': [
                 {
-                  "name": "spiffe://foo.bar/service-b",
-                  "sdsConfig": {
-                    "path": "",
-                    "apiConfigSource": {
-                      "apiType": 2,
-                      "transportApiVersion": 0,
-                      "clusterNamesList": [],
-                      "grpcServicesList": [
+                  'name': 'spiffe://foo.bar/service-b',
+                  'sdsConfig': {
+                    'path': '',
+                    'apiConfigSource': {
+                      'apiType': 2,
+                      'transportApiVersion': 0,
+                      'clusterNamesList': [],
+                      'grpcServicesList': [
                         {
-                          "envoyGrpc": {
-                            "clusterName": "spiffe-agent"
+                          'envoyGrpc': {
+                            'clusterName': 'spiffe-agent'
                           },
-                          "initialMetadataList": []
+                          'initialMetadataList': []
                         }
                       ],
-                      "setNodeOnFirstMessageOnly": false
+                      'setNodeOnFirstMessageOnly': false
                     },
-                    "resourceApiVersion": 0
+                    'resourceApiVersion': 0
                   }
                 }
               ],
-              "combinedValidationContext": {
-                "defaultValidationContext": {
-                  "verifyCertificateSpkiList": [],
-                  "verifyCertificateHashList": [],
-                  "verifySubjectAltNameList": [
-                    "spiffe://foo.bar/service-a"
+              'combinedValidationContext': {
+                'defaultValidationContext': {
+                  'verifyCertificateSpkiList': [],
+                  'verifyCertificateHashList': [],
+                  'verifySubjectAltNameList': [
+                    'spiffe://foo.bar/service-a'
                   ],
-                  "matchSubjectAltNamesList": [],
-                  "allowExpiredCertificate": false,
-                  "trustChainVerification": 0
+                  'matchSubjectAltNamesList': [],
+                  'allowExpiredCertificate': false,
+                  'trustChainVerification': 0
                 },
-                "validationContextSdsSecretConfig": {
-                  "name": "spiffe://foo.bar",
-                  "sdsConfig": {
-                    "path": "",
-                    "apiConfigSource": {
-                      "apiType": 2,
-                      "transportApiVersion": 0,
-                      "clusterNamesList": [],
-                      "grpcServicesList": [
+                'validationContextSdsSecretConfig': {
+                  'name': 'spiffe://foo.bar',
+                  'sdsConfig': {
+                    'path': '',
+                    'apiConfigSource': {
+                      'apiType': 2,
+                      'transportApiVersion': 0,
+                      'clusterNamesList': [],
+                      'grpcServicesList': [
                         {
-                          "envoyGrpc": {
-                            "clusterName": "spiffe-agent"
+                          'envoyGrpc': {
+                            'clusterName': 'spiffe-agent'
                           },
-                          "initialMetadataList": []
+                          'initialMetadataList': []
                         }
                       ],
-                      "setNodeOnFirstMessageOnly": false
+                      'setNodeOnFirstMessageOnly': false
                     },
-                    "resourceApiVersion": 0
+                    'resourceApiVersion': 0
                   }
                 }
               },
-              "alpnProtocolsList": []
+              'alpnProtocolsList': []
             },
-            "sni": "",
-            "allowRenegotiation": false
+            'sni': '',
+            'allowRenegotiation': false
           })
         }
-        
+
       }
     })
 
