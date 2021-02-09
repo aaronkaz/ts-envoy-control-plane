@@ -2,7 +2,7 @@ import { envoy } from '../pkg/conversion'
 import { HttpConnectionManager } from '../../lib/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager_pb'
 import { UpstreamTlsContext } from '../../lib/envoy/api/v2/auth/tls_pb'
 import { TcpProxy } from '../../lib/envoy/config/filter/network/tcp_proxy/v2/tcp_proxy_pb'
-import { ExtAuthz } from '../../lib/envoy/config/filter/network/ext_authz/v2/ext_authz_pb'
+// import { ExtAuthz } from '../../lib/envoy/config/filter/network/ext_authz/v2/ext_authz_pb'
 import { Lua } from '../../lib/envoy/config/filter/http/lua/v2/lua_pb'
 import { Config as AwsLambdaConfig } from '../../lib/envoy/config/filter/http/aws_lambda/v2alpha/aws_lambda_pb'
 
@@ -709,8 +709,7 @@ describe( 'conversion', () => {
                   'http_filters': [
                     {
                       'name': 'envoy.ext_authz',
-                      'typed_config': {
-                        '@type': 'type.googleapis.com/envoy.config.filter.network.ext_authz.v2.ExtAuthz',
+                      'config': {
                         'failure_mode_allow': true,
                         'grpc_service': {
                           'envoy_grpc': {
@@ -721,7 +720,7 @@ describe( 'conversion', () => {
                       }
                     },
                     {
-                      'name': 'envoy.ext_authz',
+                      'name': 'envoy.lua',
                       'typed_config': {
                         '@type': 'type.googleapis.com/envoy.config.filter.http.lua.v2.Lua',
                         'inline_code': 'function envoy_on_request(request_handle)\nend'
@@ -910,7 +909,7 @@ describe( 'conversion', () => {
                 'name': 'envoy.http_connection_manager',
                 'typedConfig': {
                   'typeUrl': 'type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager',
-                  'value': 'EgxpbmdyZXNzX2h0dHAijQEKC2xvY2FsX3JvdXRlEn4KB3NlcnZpY2USASoaRAoMCggvcm91dGUvYUIAEg8KCXNlcnZpY2UtYUICCB5CIwoPZW52b3kuZXh0X2F1dGh6EhAKDgoIZGlzYWJsZWQSAiABGhIKDAoIL3JvdXRlL2JCABoCIAGCARUKD2Nvbm5lY3QtZmFpbHVyZRICCAIqfQoPZW52b3kuZXh0X2F1dGh6ImoKRXR5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5uZXR3b3JrLmV4dF9hdXRoei52Mi5FeHRBdXRoehIhEh0KFwoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlGgIIBRgBKn0KD2Vudm95LmV4dF9hdXRoeiJqCjd0eXBlLmdvb2dsZWFwaXMuY29tL2Vudm95LmNvbmZpZy5maWx0ZXIuaHR0cC5sdWEudjIuTHVhEi8KLWZ1bmN0aW9uIGVudm95X29uX3JlcXVlc3QocmVxdWVzdF9oYW5kbGUpCmVuZCoQCgxlbnZveS5yb3V0ZXISAFoCCAFyAggB'
+                  'value': 'EgxpbmdyZXNzX2h0dHAijQEKC2xvY2FsX3JvdXRlEn4KB3NlcnZpY2USASoaRAoMCggvcm91dGUvYUIAEg8KCXNlcnZpY2UtYUICCB5CIwoPZW52b3kuZXh0X2F1dGh6EhAKDgoIZGlzYWJsZWQSAiABGhIKDAoIL3JvdXRlL2JCABoCIAGCARUKD2Nvbm5lY3QtZmFpbHVyZRICCAIqjQEKD2Vudm95LmV4dF9hdXRoehJ6ChgKEmZhaWx1cmVfbW9kZV9hbGxvdxICIAEKXgoMZ3JwY19zZXJ2aWNlEk4qTAo5CgplbnZveV9ncnBjEisqKQonCgxjbHVzdGVyX25hbWUSFxoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlCg8KB3RpbWVvdXQSBBoCNXMqdwoJZW52b3kubHVhImoKN3R5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5odHRwLmx1YS52Mi5MdWESLwotZnVuY3Rpb24gZW52b3lfb25fcmVxdWVzdChyZXF1ZXN0X2hhbmRsZSkKZW5kKhAKDGVudm95LnJvdXRlchIAWgIIAXICCAE='
                 }
               }
             ],
@@ -1061,13 +1060,66 @@ describe( 'conversion', () => {
             'httpFiltersList': [
               {
                 'name': 'envoy.ext_authz',
-                'typedConfig': {
-                  'typeUrl': 'type.googleapis.com/envoy.config.filter.network.ext_authz.v2.ExtAuthz',
-                  'value': 'Eh0KFwoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlGgIIBRgB'
+                'config': {
+                  'fieldsMap': [
+                    [
+                      'failure_mode_allow',
+                      {
+                        'nullValue': 0,
+                        'numberValue': 0,
+                        'stringValue': '',
+                        'boolValue': true
+                      }
+                    ],
+                    [
+                      'grpc_service',
+                      {
+                        'nullValue': 0,
+                        'numberValue': 0,
+                        'stringValue': '',
+                        'boolValue': false,
+                        'structValue': {
+                          'fieldsMap': [
+                            [
+                              'envoy_grpc',
+                              {
+                                'nullValue': 0,
+                                'numberValue': 0,
+                                'stringValue': '',
+                                'boolValue': false,
+                                'structValue': {
+                                  'fieldsMap': [
+                                    [
+                                      'cluster_name',
+                                      {
+                                        'nullValue': 0,
+                                        'numberValue': 0,
+                                        'stringValue': 'external-auth-service',
+                                        'boolValue': false
+                                      }
+                                    ]
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              'timeout',
+                              {
+                                'nullValue': 0,
+                                'numberValue': 0,
+                                'stringValue': '5s',
+                                'boolValue': false
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  ]
                 }
               },
               {
-                'name': 'envoy.ext_authz',
+                'name': 'envoy.lua',
                 'typedConfig': {
                   'typeUrl': 'type.googleapis.com/envoy.config.filter.http.lua.v2.Lua',
                   'value': 'Ci1mdW5jdGlvbiBlbnZveV9vbl9yZXF1ZXN0KHJlcXVlc3RfaGFuZGxlKQplbmQ='
@@ -1102,29 +1154,7 @@ describe( 'conversion', () => {
           })
 
           // check ext_authz filter
-          const ext = http.getHttpFiltersList()[0].getTypedConfig()
-          expect( ext ).not.toBeNull()
-          if ( ext ) {
-            const authz = ext.unpack( ExtAuthz.deserializeBinary, ext.getTypeName() )
-            expect( authz ).not.toBeNull()
-            if ( authz ) {
-              expect( authz.toObject() ).toEqual({
-                'statPrefix': '',
-                'grpcService': {
-                  'envoyGrpc': {
-                    'clusterName': 'external-auth-service'
-                  },
-                  'timeout': {
-                    'seconds': 5,
-                    'nanos': 0
-                  },
-                  'initialMetadataList': []
-                },
-                'failureModeAllow': true,
-                'includePeerCertificate': false
-              })
-            }
-          }
+          // const ext = http.getHttpFiltersList()[0].getTypedConfig()
 
           // check lua filter
           const l = http.getHttpFiltersList()[1].getTypedConfig()
