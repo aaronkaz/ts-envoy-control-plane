@@ -704,6 +704,10 @@ describe( 'conversion', () => {
                   '@type': 'type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager',
                   'codec_type': 'AUTO',
                   'stat_prefix': 'ingress_http',
+                  'upgrade_configs': [{
+                    'upgrade_type': 'websocket',
+                    'enabled': false
+                  }],
                   'use_remote_address': true,
                   'idle_timeout': '1s',
                   'http_filters': [
@@ -909,7 +913,7 @@ describe( 'conversion', () => {
                 'name': 'envoy.http_connection_manager',
                 'typedConfig': {
                   'typeUrl': 'type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager',
-                  'value': 'EgxpbmdyZXNzX2h0dHAijQEKC2xvY2FsX3JvdXRlEn4KB3NlcnZpY2USASoaRAoMCggvcm91dGUvYUIAEg8KCXNlcnZpY2UtYUICCB5CIwoPZW52b3kuZXh0X2F1dGh6EhAKDgoIZGlzYWJsZWQSAiABGhIKDAoIL3JvdXRlL2JCABoCIAGCARUKD2Nvbm5lY3QtZmFpbHVyZRICCAIqjQEKD2Vudm95LmV4dF9hdXRoehJ6ChgKEmZhaWx1cmVfbW9kZV9hbGxvdxICIAEKXgoMZ3JwY19zZXJ2aWNlEk4qTAo5CgplbnZveV9ncnBjEisqKQonCgxjbHVzdGVyX25hbWUSFxoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlCg8KB3RpbWVvdXQSBBoCNXMqdwoJZW52b3kubHVhImoKN3R5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5odHRwLmx1YS52Mi5MdWESLwotZnVuY3Rpb24gZW52b3lfb25fcmVxdWVzdChyZXF1ZXN0X2hhbmRsZSkKZW5kKhAKDGVudm95LnJvdXRlchIAWgIIAXICCAE='
+                  'value': 'EgxpbmdyZXNzX2h0dHAijQEKC2xvY2FsX3JvdXRlEn4KB3NlcnZpY2USASoaRAoMCggvcm91dGUvYUIAEg8KCXNlcnZpY2UtYUICCB5CIwoPZW52b3kuZXh0X2F1dGh6EhAKDgoIZGlzYWJsZWQSAiABGhIKDAoIL3JvdXRlL2JCABoCIAGCARUKD2Nvbm5lY3QtZmFpbHVyZRICCAIqjQEKD2Vudm95LmV4dF9hdXRoehJ6ChgKEmZhaWx1cmVfbW9kZV9hbGxvdxICIAEKXgoMZ3JwY19zZXJ2aWNlEk4qTAo5CgplbnZveV9ncnBjEisqKQonCgxjbHVzdGVyX25hbWUSFxoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlCg8KB3RpbWVvdXQSBBoCNXMqdwoJZW52b3kubHVhImoKN3R5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5odHRwLmx1YS52Mi5MdWESLwotZnVuY3Rpb24gZW52b3lfb25fcmVxdWVzdChyZXF1ZXN0X2hhbmRsZSkKZW5kKhAKDGVudm95LnJvdXRlchIAWgIIAXICCAG6AQ0KCXdlYnNvY2tldBoA'
                 }
               }
             ],
@@ -1149,7 +1153,13 @@ describe( 'conversion', () => {
             'forwardClientCertDetails': 0,
             'proxy100Continue': false,
             'representIpv4RemoteAddressAsIpv4MappedIpv6': false,
-            'upgradeConfigsList': [],
+            'upgradeConfigsList': [{
+              'enabled':  {
+                'value': false
+              },
+              'filtersList': [],
+              'upgradeType': 'websocket'
+            }],
             'mergeSlashes': false
           })
 

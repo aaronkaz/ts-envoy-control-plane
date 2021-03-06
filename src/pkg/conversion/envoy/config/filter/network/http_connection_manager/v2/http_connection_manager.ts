@@ -50,6 +50,19 @@ export const HttpFilter = factory( http_connection_manager_pb.HttpFilter, {
   }
 })
 
+export const UpgradeConfig = factory( http_connection_manager_pb.HttpConnectionManager.UpgradeConfig, {
+  setEnabled: ( val?: boolean ): undefined | BoolValue => {
+    if ( val === undefined ) {
+      return val
+    }
+
+    const boolVal = new BoolValue()
+    boolVal.setValue( val )
+
+    return boolVal
+  }
+})
+
 export const HttpConnectionManager = factory( http_connection_manager_pb.HttpConnectionManager, {
   setCodecType: ( val: string ): http_connection_manager_pb.HttpConnectionManager.CodecType => {
     const codecs = http_connection_manager_pb.HttpConnectionManager.CodecType as any
@@ -73,5 +86,10 @@ export const HttpConnectionManager = factory( http_connection_manager_pb.HttpCon
   },
   setRouteConfig: ( val: any ) => {
     return RouteConfiguration( val )
+  },
+  setUpgradeConfigsList:( values: any[] ): http_connection_manager_pb.HttpConnectionManager.UpgradeConfig[] => {
+    return values.map( val => {
+      return UpgradeConfig( val )
+    })
   }
 })

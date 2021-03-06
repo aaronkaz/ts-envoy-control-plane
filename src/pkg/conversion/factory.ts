@@ -22,6 +22,9 @@ export const factory = <T extends Message, K extends keyof T>( pb: {new(): T}, s
       } else if ( Reflect.has( out, method ) && typeof val != 'object' ) {
         out[method]( val )
       }
+      // else {
+      //   console.log( 'no method>>', method, out.toObject() )
+      // }
     }
 
     return out
