@@ -30,6 +30,7 @@ imports=(
   "${vendor}/envoy/config/filter/http/ext_authz/v2"
   "${vendor}/envoy/config/filter/http/lua/v2"
   "${vendor}/envoy/config/filter/network/ext_authz/v2"
+  "${vendor}/envoy/config/filter/network/kafka_broker"
   "${vendor}/envoy/config/filter/network/http_connection_manager/v2"
   "${vendor}/envoy/config/filter/network/mysql_proxy"
   "${vendor}/envoy/config/filter/network/tcp_proxy/v2"

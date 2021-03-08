@@ -2,6 +2,7 @@ import { envoy } from '../pkg/conversion'
 import { HttpConnectionManager } from '../../lib/envoy/config/filter/network/http_connection_manager/v2/http_connection_manager_pb'
 import { UpstreamTlsContext } from '../../lib/envoy/api/v2/auth/tls_pb'
 import { TcpProxy } from '../../lib/envoy/config/filter/network/tcp_proxy/v2/tcp_proxy_pb'
+import { KafkaBroker} from '../../lib/envoy/config/filter/network/kafka_broker/v2alpha1/kafka_broker_pb'
 // import { ExtAuthz } from '../../lib/envoy/config/filter/network/ext_authz/v2/ext_authz_pb'
 import { Lua } from '../../lib/envoy/config/filter/http/lua/v2/lua_pb'
 import { Config as AwsLambdaConfig } from '../../lib/envoy/config/filter/http/aws_lambda/v2alpha/aws_lambda_pb'
@@ -1420,6 +1421,117 @@ describe( 'conversion', () => {
               })
             }
           }
+        }
+      }
+
+    })
+
+    test( 'kafka listener', () => {
+      const data = {
+        'name': 'kafka-listener',
+        'address': {
+          'socket_address': {
+            'address': '0.0.0.0',
+            'port_value': '19092'
+          }
+        },
+        'filter_chains': [
+          {
+            'filters': [
+              {
+                'name': 'envoy.filters.network.kafka_broker',
+                'typed_config': {
+                  '@type': 'type.googleapis.com/envoy.config.filter.network.kafka_broker.v2alpha1.KafkaBroker',
+                  'stat_prefix': 'broker1'
+                }
+              },
+              {
+                'name': 'envoy.tcp_proxy',
+                'typed_config': {
+                  '@type': 'type.googleapis.com/envoy.config.filter.network.tcp_proxy.v2.TcpProxy',
+                  'stat_prefix': 'kafka_tcp',
+                  'cluster': 'kafka_cluster'
+                }
+              }
+            ]
+          }
+        ]
+      }
+
+      const msg = envoy.api.v2.Listener( data )
+      // console.log( JSON.stringify( msg.toObject(), null, 2 ) )
+      expect( msg.toObject() ).toEqual({
+        'name': 'kafka-listener',
+        'address': {
+          'socketAddress': {
+            'protocol': 0,
+            'address': '0.0.0.0',
+            'portValue': '19092',
+            'namedPort': '',
+            'resolverName': '',
+            'ipv4Compat': false
+          }
+        },
+        'filterChainsList': [
+          {
+            'filtersList': [
+              {
+                'name': 'envoy.filters.network.kafka_broker',
+                'typedConfig': {
+                  'typeUrl': 'type.googleapis.com/envoy.config.filter.network.kafka_broker.v2alpha1.KafkaBroker',
+                  'value': 'Cgdicm9rZXIx'
+                }
+              },
+              {
+                'name': 'envoy.tcp_proxy',
+                'typedConfig': {
+                  'typeUrl': 'type.googleapis.com/envoy.config.filter.network.tcp_proxy.v2.TcpProxy',
+                  'value': 'CglrYWZrYV90Y3ASDWthZmthX2NsdXN0ZXI='
+                }
+              }
+            ],
+            'name': ''
+          }
+        ],
+        'drainType': 0,
+        'listenerFiltersList': [],
+        'continueOnListenerFiltersTimeout': false,
+        'socketOptionsList': [],
+        'trafficDirection': 0,
+        'reusePort': false,
+        'accessLogList': []
+      })
+
+      const a = msg.getFilterChainsList()[0].getFiltersList()[0].getTypedConfig()
+      expect( a ).not.toBeNull()
+      if ( a ) {
+        const kafka = a.unpack( KafkaBroker.deserializeBinary, a.getTypeName() )
+        expect( kafka ).not.toBeNull()
+
+        // check kafka proxy config
+        if ( kafka ) {
+          // console.log( JSON.stringify( kafka.toObject(), null, 2 ) )
+          expect( kafka.toObject() ).toEqual({
+            'statPrefix': 'broker1'
+          })
+        }
+      }
+
+      const b = msg.getFilterChainsList()[0].getFiltersList()[1].getTypedConfig()
+      expect( b ).not.toBeNull()
+      if ( b ) {
+        const tcp = b.unpack( TcpProxy.deserializeBinary, b.getTypeName() )
+        expect( tcp ).not.toBeNull()
+
+        // check tcp proxy config
+        if ( tcp ) {
+          // console.log( JSON.stringify( tcp.toObject(), null, 2 ) )
+          expect( tcp.toObject() ).toEqual({
+            'statPrefix': 'kafka_tcp',
+            'cluster': 'kafka_cluster',
+            'accessLogList': [],
+            'hashPolicyList': []
+          })
         }
       }
 

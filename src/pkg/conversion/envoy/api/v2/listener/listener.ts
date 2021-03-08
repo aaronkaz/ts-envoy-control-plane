@@ -37,6 +37,12 @@ export const Filter = factory( listenerPB.Filter, {
         any.pack( msg.serializeBinary(), packType )
         break
       }
+      case 'type.googleapis.com/envoy.config.filter.network.kafka_broker.v2alpha1.KafkaBroker': {
+        const msg = filter.network.kafka_broker.v2alpha1.KafkaBroker( val )
+        const packType = val['@type'].replace( 'type.googleapis.com/', '' )
+        any.pack( msg.serializeBinary(), packType )
+        break
+      }
       default: {
         // do nothing
       }
