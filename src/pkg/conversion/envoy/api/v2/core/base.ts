@@ -43,3 +43,5 @@ export const Metadata = factory( ExtendedMetadata, {
     return m
   }
 })
+
+export const DataSource = factory( basePb.DataSource, {})

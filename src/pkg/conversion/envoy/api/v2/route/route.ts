@@ -1,4 +1,5 @@
 import * as route_pb from '../../../../../../../lib/envoy/api/v2/route/route_components_pb'
+import { DataSource } from '../core'
 import { factory, duration } from '../../../../factory'
 import { UInt32Value } from 'google-protobuf/google/protobuf/wrappers_pb'
 import * as jspb from 'google-protobuf'
@@ -30,6 +31,11 @@ export const RouteAction = factory( route_pb.RouteAction, {
 })
 
 export const RedirectAction = factory( route_pb.RedirectAction, {})
+export const DirectResponseAction = factory( route_pb.DirectResponseAction, {
+  setBody: ( val: any ) => {
+    return DataSource( val )
+  }
+})
 
 export const Route = factory( ExtendedRoute, {
   setMatch: ( val: any ) => {
@@ -76,6 +82,9 @@ export const Route = factory( ExtendedRoute, {
   },
   setRedirect: ( val: any ) => {
     return RedirectAction( val )
+  },
+  setDirectResponse: ( val: any ) => {
+    return DirectResponseAction( val )
   }
 
 })

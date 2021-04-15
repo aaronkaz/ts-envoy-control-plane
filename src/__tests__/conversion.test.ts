@@ -770,6 +770,17 @@ describe( 'conversion', () => {
                             'redirect': {
                               'https_redirect': true
                             }
+                          },
+                          {
+                            'match': {
+                              'prefix': '/route/c'
+                            },
+                            'direct_response': {
+                              'status': 200,
+                              'body': {
+                                'inline_string': 'OK'
+                              }
+                            }
                           }
                         ]
                       }
@@ -914,7 +925,7 @@ describe( 'conversion', () => {
                 'name': 'envoy.http_connection_manager',
                 'typedConfig': {
                   'typeUrl': 'type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager',
-                  'value': 'EgxpbmdyZXNzX2h0dHAijQEKC2xvY2FsX3JvdXRlEn4KB3NlcnZpY2USASoaRAoMCggvcm91dGUvYUIAEg8KCXNlcnZpY2UtYUICCB5CIwoPZW52b3kuZXh0X2F1dGh6EhAKDgoIZGlzYWJsZWQSAiABGhIKDAoIL3JvdXRlL2JCABoCIAGCARUKD2Nvbm5lY3QtZmFpbHVyZRICCAIqjQEKD2Vudm95LmV4dF9hdXRoehJ6ChgKEmZhaWx1cmVfbW9kZV9hbGxvdxICIAEKXgoMZ3JwY19zZXJ2aWNlEk4qTAo5CgplbnZveV9ncnBjEisqKQonCgxjbHVzdGVyX25hbWUSFxoVZXh0ZXJuYWwtYXV0aC1zZXJ2aWNlCg8KB3RpbWVvdXQSBBoCNXMqdwoJZW52b3kubHVhImoKN3R5cGUuZ29vZ2xlYXBpcy5jb20vZW52b3kuY29uZmlnLmZpbHRlci5odHRwLmx1YS52Mi5MdWESLwotZnVuY3Rpb24gZW52b3lfb25fcmVxdWVzdChyZXF1ZXN0X2hhbmRsZSkKZW5kKhAKDGVudm95LnJvdXRlchIAWgIIAXICCAG6AQ0KCXdlYnNvY2tldBoA'
+                  'value': 'EgxpbmdyZXNzX2h0dHAipwEKC2xvY2FsX3JvdXRlEpcBCgdzZXJ2aWNlEgEqGkQKDAoIL3JvdXRlL2FCABIPCglzZXJ2aWNlLWFCAggeQiMKD2Vudm95LmV4dF9hdXRoehIQCg4KCGRpc2FibGVkEgIgARoSCgwKCC9yb3V0ZS9iQgAaAiABGhcKCgoIL3JvdXRlL2M6CQjIARIEGgJPS4IBFQoPY29ubmVjdC1mYWlsdXJlEgIIAiqNAQoPZW52b3kuZXh0X2F1dGh6EnoKGAoSZmFpbHVyZV9tb2RlX2FsbG93EgIgAQpeCgxncnBjX3NlcnZpY2USTipMCjkKCmVudm95X2dycGMSKyopCicKDGNsdXN0ZXJfbmFtZRIXGhVleHRlcm5hbC1hdXRoLXNlcnZpY2UKDwoHdGltZW91dBIEGgI1cyp3CgllbnZveS5sdWEiago3dHlwZS5nb29nbGVhcGlzLmNvbS9lbnZveS5jb25maWcuZmlsdGVyLmh0dHAubHVhLnYyLkx1YRIvCi1mdW5jdGlvbiBlbnZveV9vbl9yZXF1ZXN0KHJlcXVlc3RfaGFuZGxlKQplbmQqEAoMZW52b3kucm91dGVyEgBaAggBcgIIAboBDQoJd2Vic29ja2V0GgA='
                 }
               }
             ],
@@ -1022,6 +1033,30 @@ describe( 'conversion', () => {
                         'prefixRewrite': '',
                         'responseCode': 0,
                         'stripQuery': false
+                      },
+                      'perFilterConfigMap': [],
+                      'typedPerFilterConfigMap': [],
+                      'requestHeadersToAddList': [],
+                      'requestHeadersToRemoveList': [],
+                      'responseHeadersToAddList': [],
+                      'responseHeadersToRemoveList': []
+                    },
+                    {
+                      'name': '',
+                      'match': {
+                        'prefix': '/route/c',
+                        'path': '',
+                        'regex': '',
+                        'headersList': [],
+                        'queryParametersList': []
+                      },
+                      'directResponse': {
+                        'status': 200,
+                        'body': {
+                          'filename': '',
+                          'inlineBytes': '',
+                          'inlineString': 'OK'
+                        }
                       },
                       'perFilterConfigMap': [],
                       'typedPerFilterConfigMap': [],
@@ -1154,13 +1189,15 @@ describe( 'conversion', () => {
             'forwardClientCertDetails': 0,
             'proxy100Continue': false,
             'representIpv4RemoteAddressAsIpv4MappedIpv6': false,
-            'upgradeConfigsList': [{
-              'enabled':  {
-                'value': false
-              },
-              'filtersList': [],
-              'upgradeType': 'websocket'
-            }],
+            'upgradeConfigsList': [
+              {
+                'upgradeType': 'websocket',
+                'filtersList': [],
+                'enabled': {
+                  'value': false
+                }
+              }
+            ],
             'mergeSlashes': false
           })
 
